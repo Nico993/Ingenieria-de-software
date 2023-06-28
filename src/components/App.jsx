@@ -4,6 +4,7 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 
 import Home from "./Home/Home.jsx";
 import ErrorPage from "./ErrorPage.jsx";
+import Inventario  from './Inventario/Inventario.jsx';
 
 
 import "../styles/root.css"
@@ -18,7 +19,7 @@ export default function App() {
         },
         {
             path:"inventario",
-            element: <div>Inventario</div>,
+            element: <Inventario></Inventario>,
             errorElement: <ErrorPage/>,
         },
         {

@@ -1,0 +1,39 @@
+.inventory {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .title {
+    color: #fa9caa;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .table th {
+    background-color: #fa9caa;
+    color: #FFFFFF;
+    padding: 10px;
+  }
+  
+  .table td {
+    padding: 10px;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #F8F8F8;
+  }
+  
+  .table tr:hover {
+    background-color: #FFB6C1;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  

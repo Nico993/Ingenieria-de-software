@@ -1,18 +1,27 @@
-.main{
-    border-bottom: 2px solid black;
-}
-
-.navbar{
-    width: 50%;
-    margin: auto;
+.navbar {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.title{
-    color: #333333;
-    font-size: 2rem;
-    font-weight: bold;
-}
+    background-color: #8521be;
+    padding: 2%;
+  }
+  
+  .navbar p,
+  .navbar h1 {
+    color: #FFFFFF;
+    margin: 0;
+  }
+  
+  .navbar p {
+    font-size: 16px;
+  }
+  
+  .navbar h1 {
+    font-size: 24px;
+  }
+  
+  .navbar p:hover,
+  .navbar h1:hover {
+    text-decoration: underline;
+  }
+  

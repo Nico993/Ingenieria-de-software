@@ -1,0 +1,74 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .formulario {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .imagen input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .detalle {
+    margin-top: 10px;
+    padding-left: 15%;
+
+  }
+  
+.imagen{
+    padding-top: 10%;
+    padding-left: 5%;
+}
+
+  .detalle h4 {
+    margin-bottom: 10px;
+  }
+  
+  .input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 80%;
+  }
+  
+  .detalle > div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Agregado para separar los botones del resto del contenido */
+  }
+  
+  .titulo{
+    color: #fa9caa;
+  }
+
+  .detalle button {
+    padding: 5px 10px;
+    background-color: #fa9caa;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .detalle button:first-child {
+    margin-right: 10px; /* Añadido margen derecho solo al primer botón */
+  }
+  
+  .detalle button:hover {
+    background-color: #faaeb8;
+  }
+  
