@@ -10,7 +10,7 @@ export default function Options() {
   const [escanearProductoPupUp,setescanearProductoPopUp]=useState(false)
 
   function clickAgregarProductoPopUp(){
-    setagregarProductoPopUp (true);
+    setagregarProductoPopUp(true);
   }
 
   function clickEscanearProductoPupUp(){
@@ -24,10 +24,10 @@ export default function Options() {
            <button className={styles.button} onClick={clickEscanearProductoPupUp}>Escanear pedido</button>
         </div>
         <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8521be" fill-opacity="1" d="M0,224L1440,224L1440,320L0,320Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8521be" fillOpacity="1" d="M0,224L1440,224L1440,320L0,320Z"></path></svg>
         </div>
-        {agregarProductoPopUp === true ? <AgregarProductoPopUp></AgregarProductoPopUp>:null}
-        {escanearProductoPupUp=== true ? <EscanearProductoPopUp></EscanearProductoPopUp>:null}
+        {agregarProductoPopUp === true ? <AgregarProductoPopUp close = {()=>setagregarProductoPopUp(false)}></AgregarProductoPopUp>:null}
+        {escanearProductoPupUp=== true ? <EscanearProductoPopUp close = {()=>setescanearProductoPopUp(false)}></EscanearProductoPopUp>:null}
     </>
 
   )
