@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/inventario.module.css'; // Importa el archivo CSS de estilos
 import NavBar from '../Home/NavBar';
+import { obtenerProductos } from '../../api';
 
 const Inventario = () => {
-  const products = [
-    { id: 1, name: 'Producto 1', price: 10.99, quantity: 5, description: 'Descripción del Producto 1' },
-    { id: 2, name: 'Producto 2', price: 19.99, quantity: 3, description: 'Descripción del Producto 2' },
-    { id: 3, name: 'Producto 3', price: 5.99, quantity: 10, description: 'Descripción del Producto 3' }
-  ];
+  const [productos,setProductos]=useState([]);
+  useEffect(()=>{
+    obtenerProductos().then((res)=>{
+      setProductos(res)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+  },[])
 
   return (
     <>
@@ -25,12 +31,12 @@ const Inventario = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>${product.price.toFixed(2)}</td>
-              <td>{product.quantity}</td>
-              <td>{product.description}</td>
+          {productos.map(product => (
+            <tr key={product.codigo}>
+              <td>{product.nombre}</td>
+              <td>${product.precio_unitario && product.precio_unitario.toFixed(2)}</td>
+              <td>{product.cantidad}</td>
+              <td>{product.descripcion}</td>
             </tr>
           ))}
         </tbody>
@@ -40,6 +46,7 @@ const Inventario = () => {
     
   );
 };
+
 
 export default Inventario;
 

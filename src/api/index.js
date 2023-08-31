@@ -21,4 +21,20 @@ function nuevoProducto(formData){
 
 }
 
-export{nuevoProducto}
+function obtenerProductos(){
+    return new Promise((resolve,reject)=>{
+        axios.get(URL+'productos')
+        .then(response=>{
+            resolve(response.data);
+        })
+        .catch(error=>{
+            if(error.response){
+                reject(error.response.data);
+            } else{
+                reject(error);
+            }
+        });
+    });
+}
+
+export{nuevoProducto,obtenerProductos}

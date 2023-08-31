@@ -2,6 +2,7 @@ import styles from "../../styles/agregarProductos.module.css"
 import React, { useState } from 'react'
 import { nuevoProducto } from "../../api";
 
+
 export const AgregarProductoPopUp = (props) => {
     const [formData, setFormData]=useState({
         nombre: '',
@@ -43,9 +44,11 @@ export const AgregarProductoPopUp = (props) => {
         form.append("imagen",formData.imagen)
 
         nuevoProducto(form).then((res)=>{
-            console.log(res)
+            props.mensajeExito('Producto agregado.')
+            props.close()
         })
         .catch((err)=>{
+            props.mensajeError('Error al agregar el producto.')
             console.log(err)
         })
     }
@@ -60,7 +63,7 @@ export const AgregarProductoPopUp = (props) => {
                         <div className={styles.uploadIcon}>+</div>
                         <div>Agregar imagen</div>
                     </label>
-                    <input id="upload-input" type="file" className={styles.uploadInput} onChange={handleImageChange} required/>
+                    <input name='imagen' id="upload-input" type="file" className={styles.uploadInput} onChange={handleImageChange} required/>
                 </div>
                 <div className={styles.detalle}>
                     <h4 className={styles.titulo}>Nuevo producto</h4>
