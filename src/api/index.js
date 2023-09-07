@@ -37,4 +37,22 @@ function obtenerProductos(){
     });
 }
 
-export{nuevoProducto,obtenerProductos}
+function eliminarProducto(codigo){
+    return new Promise((resolve,reject)=>{
+        axios.delete(URL+'productos/'+codigo)
+        .then(response=>{
+            console.log(response);
+            resolve(response.data);
+        })
+        .catch(error=>{
+            console.log(error);
+            if(error.response){
+                reject(error.response.data);
+            } else{
+                reject(error);
+            }
+        });
+    });
+}
+
+export{nuevoProducto,obtenerProductos, eliminarProducto}
