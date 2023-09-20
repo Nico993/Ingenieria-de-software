@@ -2,11 +2,10 @@ import axios from "axios"
 const URL = "http://vps.simix.tech:9191/v1/reconocimiento-productos/";
 
 function nuevoProducto(formData){
-
     return new Promise((resolve,reject)=>{
         axios.post(URL+'productos',formData)
         .then(response=>{
-            if(response.status===201){
+            if(response.status===200){
                 resolve(response.data);
             }
         })
