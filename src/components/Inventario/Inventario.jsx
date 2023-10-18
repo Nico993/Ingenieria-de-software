@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/inventario.module.css'; // Importa el archivo CSS de estilos
 import NavBar from '../Home/NavBar';
+import {EditarProductoPopUp} from "./EditarProductoPopUp";
 import { obtenerProductos, eliminarProducto } from '../../api';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Inventario = () => {
   const [productos,setProductos]=useState([]);
   const [confirmarEliminar,setConfirmarEliminar]=useState(null);
+  const [editarProductoPopUp,setEditarProductoPopUp]=useState(null)
 
   useEffect(()=>{
     obtenerProductos().then((res)=>{
@@ -54,6 +56,10 @@ const Inventario = () => {
     });
   }
 
+  function  handleEditarProducto(product){
+    setEditarProductoPopUp(product);
+  }
+
   return (
     <>
     <NavBar></NavBar>
@@ -82,6 +88,7 @@ const Inventario = () => {
                   <button
                   className={styles.editarButton}
                   type='button'
+                  onClick={()=>handleEditarProducto(product)}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -112,6 +119,7 @@ const Inventario = () => {
     continuar={eliminarProductoPermanentemente}
     />}
     <ToastContainer/>
+    {editarProductoPopUp ? <EditarProductoPopUp close = {()=>setEditarProductoPopUp(false)} product = {editarProductoPopUp}></EditarProductoPopUp>:null}
     </>
     
   );
