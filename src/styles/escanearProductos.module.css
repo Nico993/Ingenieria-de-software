@@ -76,11 +76,35 @@
   
 
 .nombreProducto{
-    border-bottom: 2px solid rgb(68, 67, 67);
-    width: 80%;
+    border-left: 2px solid rgb(68, 67, 67);
     margin: auto;
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgb(68, 67, 67);
+    padding-left: 1%;
 }
 
+.nombreProducto input {
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  border-bottom: 2px solid #bebebe;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  width: 50%;
+
+  /* Agrega efectos visuales */
+  box-shadow: 0 0 10px #ffffff;
+  transition: all 0.3s ease-in-out;
+
+  /* Personaliza el texto */
+  font-size: 16px;
+}
+
+.nombreProducto input:focus {
+  /* Cambia el aspecto del input cuando está enfocado */
+  background-color: #ffffff;
+  border-color: #fa9caa;
+  color: #fa9caa;
+}
   .detalle h4 {
     margin-bottom: 10px;
   }
@@ -99,6 +123,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 15% 2%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
   }
   
   .detalle button:first-child {

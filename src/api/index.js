@@ -1,5 +1,5 @@
 import axios from "axios"
-const URL = "http://172.29.151.58:9090/v1/reconocimiento-productos/";
+const URL = "http://back.simix.tech:9090/v1/reconocimiento-productos/";
 
 function nuevoProducto(formData){
     return new Promise((resolve,reject)=>{

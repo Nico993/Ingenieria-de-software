@@ -71,7 +71,9 @@ export const EscanearProductoPopUp = (props) => {
                                 </div>
                             )
                     })}
+                    <div style={{position: "absolute"}}>
                 <button onClick={handleAceptarClick}>Aceptar</button>
+                </div>
             </>
         )
     }
@@ -83,7 +85,7 @@ export const EscanearProductoPopUp = (props) => {
     <div className={styles.main}>
         <form onSubmit={handleSubmit}>
             <div className={styles.formulario}>
-            <div className={styles.imagen}>
+            <div className={styles.imagen} style={{ backgroundImage: imagen ? `url(${URL.createObjectURL(imagen)})` : 'none', backgroundSize: "100% 100%", backgroundRepeat: "no-repeat"}}>
                     <label htmlFor="upload-input" className={styles.uploadLabel}>
                         <div className={styles.uploadIcon}>+</div>
                         <div>Agregar imagen</div>
