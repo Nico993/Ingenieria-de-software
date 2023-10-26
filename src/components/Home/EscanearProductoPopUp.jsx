@@ -1,37 +1,48 @@
 import styles from "../../styles/escanearProductos.module.css"
 import React, {useState} from 'react'
+import { escanearProductos, nuevaVenta } from "../../api/index";
 
 export const EscanearProductoPopUp = (props) => {
     const [imagen, setImagen] = useState(null);
     const [editarProductos, setEditarProductos] = useState(false);
-    const [productosEscaneados, setProductosEscaneados] = useState([
-        {
-            nombre: 'Producto 1',
-            precio: 2300,
-        },
-        {
-            nombre: 'Producto 2',
-            precio: 2560,
-        },
-        {
-            nombre: 'Producto 3',
-            precio: 1600,
-        },
-        {
-            nombre: 'Producto 4',
-            precio: 500,
-        }
-    ]);
+    const [productosEscaneados, setProductosEscaneados] = useState([]);
 
     function handleSubmit(e){
-        //Llamar al endpoint de una nueva venta
         e.preventDefault();
+        console.log("Pasa");
+        const form=new FormData();
+        const productoJson={
+            venta: productosEscaneados
+        };
+        console.log(productoJson);
+        const jsonString=JSON.stringify(productoJson);
+        const jsonBlob=new Blob ([jsonString],{type:'application/json'});
+
+        form.append("venta",jsonBlob,"venta.json");
+        nuevaVenta(form).then((res)=>{
+            props.mensajeExito('Venta agregada');
+            props.close()
+        })
+        .catch((err)=>{
+            props.mensajeError('Error al agregar la venta.')
+            console.log(err)
+        })
     }
 
     const handleImageChange = (event) => {
         const imageFile = event.target.files[0];
         setImagen(imageFile);
-        //Llamar al endpoint de escanear productos
+        const form=new FormData();
+        form.append("imagen",imageFile)
+        escanearProductos(form).then((res)=>{
+            console.log(res);
+            setProductosEscaneados(res);
+
+        })
+        .catch((err)=>{
+            console.log(err);
+            props.mensajeError('Error al escanear los productos.')
+        });
     }
 
     
@@ -56,7 +67,7 @@ export const EscanearProductoPopUp = (props) => {
                             return (
                                 <div className={styles.nombreProducto} key={index}>
                                     <input type="text" name="nombre" value={form[index].nombre} onChange={(event) => handleInputChange(event,index)}></input>
-                                    <input type="number" name="precio" value={form[index].precio} onChange={(event) => handleInputChange(event,index)}></input>
+                                    <input type="number" name="precio_unitario" value={form[index].precio_unitario} onChange={(event) => handleInputChange(event,index)}></input>
                                 </div>
                             )
                     })}
@@ -72,12 +83,12 @@ export const EscanearProductoPopUp = (props) => {
     <div className={styles.main}>
         <form onSubmit={handleSubmit}>
             <div className={styles.formulario}>
-            <div className={styles.imagen} style={{ backgroundImage: `url(${imagen && URL.createObjectURL(imagen)})`}}>
+            <div className={styles.imagen}>
                     <label htmlFor="upload-input" className={styles.uploadLabel}>
                         <div className={styles.uploadIcon}>+</div>
                         <div>Agregar imagen</div>
                     </label>
-                    <input name='imagen' id="upload-input" type="file" className={styles.uploadInput} onChange={handleImageChange} required/>
+                    <input name='imagen' id="upload-input" type="file" className={styles.uploadInput} onChange={handleImageChange}/>
                 </div>
 
                 <div className={styles.detalle}>
@@ -87,7 +98,7 @@ export const EscanearProductoPopUp = (props) => {
                             return (
                                 <div className={styles.nombreProducto} key={index}>
                                     <p>{producto.nombre}</p>
-                                    <p>${producto.precio}</p>
+                                    <p>${producto.precio_unitario}</p>
                                 </div>
                             )
                         })}

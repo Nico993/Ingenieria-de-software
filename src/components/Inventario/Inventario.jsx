@@ -60,6 +60,21 @@ const Inventario = () => {
     setEditarProductoPopUp(product);
   }
 
+  function mostrarMensajeExito(mensaje){
+    toast.success(mensaje, {
+      posición : "arriba a la derecha" ,
+      ocultarProgressBar : false ,
+      closeOnClick : true ,
+      pausaOnHover : true ,
+      arrastrable : true ,
+      progreso : false ,
+      tema : "luz" ,
+      })
+  }
+  function mostrarMensajeError(mensaje){
+    toast.error(mensaje)
+  }
+
   return (
     <>
     <NavBar></NavBar>
@@ -119,7 +134,7 @@ const Inventario = () => {
     continuar={eliminarProductoPermanentemente}
     />}
     <ToastContainer/>
-    {editarProductoPopUp ? <EditarProductoPopUp close = {()=>setEditarProductoPopUp(false)} product = {editarProductoPopUp}></EditarProductoPopUp>:null}
+    {editarProductoPopUp ? <EditarProductoPopUp close = {()=>setEditarProductoPopUp(false)} product = {editarProductoPopUp} mensajeExito={mostrarMensajeExito} mensajeError={mostrarMensajeError}></EditarProductoPopUp>:null}
     </>
     
   );

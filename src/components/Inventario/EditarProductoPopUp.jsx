@@ -1,10 +1,11 @@
 import styles from "../../styles/agregarProductos.module.css"
 import React, { useState } from 'react'
 
+import { editarProducto } from "../../api";
+
 
 export const EditarProductoPopUp = (props) => {
     const [formData, setFormData]=useState(props.product);
-    console.log(formData);
 
     const handleInputChange=(event)=>{
         const{name, value}=event.target;
@@ -26,16 +27,25 @@ export const EditarProductoPopUp = (props) => {
         e.preventDefault();
         const form=new FormData();
         const productoJson={
+            codigo: formData.codigo,
             nombre:formData.nombre,
-            precio_unitario:formData.precio,
+            precio_unitario:formData.precio_unitario,
             cantidad:formData.cantidad,
             descripcion:formData.descripcion,
         };
+        console.log(productoJson);
         const jsonString=JSON.stringify(productoJson);
         const jsonBlob=new Blob ([jsonString],{type:'application/json'});
 
         form.append("producto",jsonBlob,"producto.json");
         form.append("imagen",formData.imagen)
+
+        editarProducto(form).then((res)=>{
+            window.location.reload(true);
+        })
+        .catch((err)=>{
+            props.mensajeError("Ocurrió un error al editar el producto");
+        })
 
     }
 

@@ -44,7 +44,7 @@ export default function Options() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#8521be" fillOpacity="1" d="M0,224L1440,224L1440,320L0,320Z"></path></svg>
         </div>
         {agregarProductoPopUp === true ? <AgregarProductoPopUp close = {()=>setagregarProductoPopUp(false)} mensajeExito={mostrarMensajeExito} mensajeError={mostrarMensajeError}></AgregarProductoPopUp>:null}
-        {escanearProductoPupUp=== true ? <EscanearProductoPopUp close = {()=>setescanearProductoPopUp(false)}></EscanearProductoPopUp>:null}
+        {escanearProductoPupUp=== true ? <EscanearProductoPopUp close = {()=>setescanearProductoPopUp(false)} mensajeExito={mostrarMensajeExito} mensajeError={mostrarMensajeError}></EscanearProductoPopUp>:null}
         <ToastContainer />
     </>
 
