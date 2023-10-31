@@ -1,5 +1,5 @@
 import axios from "axios"
-const URL = "http://back.simix.tech:9090/v1/reconocimiento-productos/";
+const URL = "https://hip-gnat-correctly.ngrok-free.app/v1/reconocimiento-productos/";
 
 function nuevoProducto(formData){
     return new Promise((resolve,reject)=>{
