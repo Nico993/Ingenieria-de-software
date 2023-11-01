@@ -101,7 +101,7 @@ export const EscanearProductoPopUp = (props) => {
         <form onSubmit={handleSubmit}>
             <div className={styles.formulario}>
             <div className={styles.imagen} style={{ backgroundImage: imagen ? `url(${URL.createObjectURL(imagen)})` : 'none', backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", position: "relative"}}>
-                {imagenURI && <img src={imagenURI} alt="" style={{width: "100%", height: "100%", position: "absolute"}}/>}
+                {imagenURI && <img src={imagenURI + "?timestamp=" + Math.random()} alt="" style={{width: "100%", height: "100%", position: "absolute"}}/>}
                     <label htmlFor="upload-input" className={styles.uploadLabel}>
                         <div className={styles.uploadIcon}>+</div>
                         <div>Agregar imagen</div>
